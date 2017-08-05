@@ -1,3 +1,3 @@
 # PeakUp.Utilities
 
-Some of the things that we are commonly use.
+Some of the things that we commonly use.

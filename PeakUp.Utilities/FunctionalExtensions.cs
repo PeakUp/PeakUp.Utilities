@@ -16,6 +16,6 @@ namespace PeakUp.Utilities
 
         public static TTo As<TFrom, TTo>(this TFrom self, Func<TFrom, TTo> job) => job == null ? default(TTo) : job(self);
 
-        public static bool IsNull<T>(this T self) where T : class => self == null;
+        public static bool IsNull(this object self) => self == null;
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PeakUp.Utilities
 {
@@ -15,9 +12,9 @@ namespace PeakUp.Utilities
         /// Get class properties with description attributes. (Key: PropertyName, Value: Description)
         /// </summary>
         /// <typeparam name="T">Any class tpye</typeparam>
-        /// <param name="model">Any class</param>
+        /// <param name="_">Any class</param>
         /// <returns></returns>
-        public static Dictionary<string, string> GetPropertiesWithDescription<T>(this T model) where T : class
+        public static Dictionary<string, string> GetPropertiesWithDescription<T>(this T _) where T : class
         {
             Dictionary<string, string> properties = new Dictionary<string, string>();
             PropertyInfo[] props = typeof(T).GetProperties();
@@ -26,8 +23,7 @@ namespace PeakUp.Utilities
                 object[] attrs = prop.GetCustomAttributes(true);
                 foreach (object attr in attrs)
                 {
-                    DescriptionAttribute authAttr = attr as DescriptionAttribute;
-                    if (authAttr != null)
+                    if (attr is DescriptionAttribute authAttr)
                     {
                         string propName = prop.Name;
                         string auth = authAttr.Description;
@@ -63,10 +59,10 @@ namespace PeakUp.Utilities
         /// Get property type with name.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="model">Any class</param>
+        /// <param name="_">Any class</param>
         /// <param name="propertyName">Property name</param>
         /// <returns></returns>
-        public static Type GetTypeWithPropetyName<T>(this T model, string propertyName)
+        public static Type GetTypeWithPropetyName<T>(this T _, string propertyName)
         {
             var property = typeof(T).GetProperty(propertyName);
 

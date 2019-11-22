@@ -83,8 +83,9 @@ namespace PeakUp.Utilities
         public static string HMACAsRPEMD160(this string self, string key)
         {
             var keyByte = encoding.GetBytes(key);
-            using (var hmacsha256 = new HMACRIPEMD160(keyByte))
+            using (var hmacsha256 = System.Security.Cryptography.HMAC.Create("HMACRIPEMD160"))
             {
+                hmacsha256.Key = keyByte;
                 hmacsha256.ComputeHash(encoding.GetBytes(self));
                 return hmacsha256.Hash.ConvertString().ToLower();
             }

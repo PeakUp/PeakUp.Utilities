@@ -12,7 +12,7 @@ namespace PeakUp.Utilities.Helpers
         private static HttpHelper _instance;
         public static HttpHelper Instance
         {
-            get { return _instance ?? new HttpHelper(); }
+            get { return _instance ?? (_instance = new HttpHelper()); }
         }
 
         /// <summary>

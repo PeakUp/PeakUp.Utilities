@@ -12,7 +12,7 @@ namespace PeakUp.Utilities
         /// Get class properties with description attributes. (Key: PropertyName, Value: Description)
         /// </summary>
         /// <typeparam name="T">Any class tpye</typeparam>
-        /// <param name="model">Any class</param>
+        /// <param name="_">Any class</param>
         /// <returns></returns>
         public static Dictionary<string, string> GetPropertiesWithDescription<T>(this T _) where T : class
         {
@@ -59,7 +59,7 @@ namespace PeakUp.Utilities
         /// Get property type with name.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="model">Any class</param>
+        /// <param name="_">Any class</param>
         /// <param name="propertyName">Property name</param>
         /// <returns></returns>
         public static Type GetTypeWithPropetyName<T>(this T _, string propertyName)

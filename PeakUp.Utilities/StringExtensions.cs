@@ -1,10 +1,8 @@
 ﻿using PeakUp.Utilities.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PeakUp.Utilities
 {
@@ -18,33 +16,31 @@ namespace PeakUp.Utilities
 
         public static int ToInt(this string self)
         {
-            int i = 0;
-            int.TryParse(self, out i);
+            int.TryParse(self, out var i);
             return i;
         }
 
         public static double ToDouble(this string self)
         {
-            double d = 0.0;
-            double.TryParse(self, out d);
+            double.TryParse(self, out var d);
             return d;
         }
 
         public static DateTime ToDateTime(this string self)
         {
-            DateTime dt = DateTime.MinValue;
-            DateTime.TryParse(self, out dt);
-            return dt;
+            if (DateTime.TryParse(self, out var dt))
+                return dt;
+            return DateTime.MinValue;
         }
 
         public static DateTimeOffset ToDateTimeOffset(this string self)
         {
-            DateTimeOffset dto = DateTimeOffset.MinValue;
-            DateTimeOffset.TryParse(self, out dto);
-            return dto;
+            if (DateTimeOffset.TryParse(self, out var dto))
+                return dto;
+            return DateTimeOffset.MinValue;
         }
 
-        static Dictionary<Type, Func<string, object>> Converters = new Dictionary<Type, Func<string, object>> {
+        static readonly Dictionary<Type, Func<string, object>> Converters = new Dictionary<Type, Func<string, object>> {
             { typeof(int), s => s.ToInt() },
             { typeof(double), s => s.ToDouble() },
             { typeof(DateTime), s => s.ToDateTime() },
@@ -55,15 +51,15 @@ namespace PeakUp.Utilities
         {
             var converter = Converters.TryGetValue(typeof(T));
             if (converter == null) throw new NotSupportedException();
-            return converter(self).As(o => o == null ? default(T) : (T)o);
+            return converter(self).As(o => o == null ? default : (T)o);
         }
-       
+
         public static string HMAC(this string self, string key, HashType hashType = HashType.MD5)
         {
             switch (hashType)
             {
                 case HashType.RPEMD160:
-                    return self.HMACAsRPEMD160(key);                    
+                    return self.HMACAsRPEMD160(key);
                 case HashType.MD5:
                     return self.HMACAsMD5(key);
                 case HashType.SHA1:

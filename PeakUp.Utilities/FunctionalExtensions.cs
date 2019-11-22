@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PeakUp.Utilities
 {
@@ -14,7 +10,7 @@ namespace PeakUp.Utilities
             return self;
         }
 
-        public static TTo As<TFrom, TTo>(this TFrom self, Func<TFrom, TTo> job) => job == null ? default(TTo) : job(self);
+        public static TTo As<TFrom, TTo>(this TFrom self, Func<TFrom, TTo> job) => job == null ? default : job(self);
 
         public static bool IsNull<T>(this T self) where T : class => self == null;
     }

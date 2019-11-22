@@ -14,9 +14,15 @@
     <PackageReleaseNotes>NetStandard targets added.</PackageReleaseNotes>
     <Authors>PEAKUP Information Technologies</Authors>
     <Company>PEAKUP Information Technologies</Company>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
   <ItemGroup Condition="'$(TargetFramework)'=='net452'">
     <Reference Include="System.Net.Http" />
   </ItemGroup>
+
 </Project>

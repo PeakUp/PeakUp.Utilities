@@ -7,7 +7,7 @@
   <PropertyGroup>
     <PackageId>PeakUp.Utilities</PackageId>
     <Title>PeakUp Utilities</Title>
-    <PackageVersion>1.2.0</PackageVersion>
+    <PackageVersion>1.3.0</PackageVersion>
     <Description>Utilities commonly used in our projects.</Description>
     <PackageTags>peakup utilities</PackageTags>
     <Copyright>Copyright 2017 PEAKUP</Copyright>
